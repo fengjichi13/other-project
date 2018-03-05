@@ -1,14 +1,16 @@
 package bjsxt.zookeeper.base;
 
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
+import org.apache.zookeeper.AsyncCallback;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.Watcher.Event.EventType;
-import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.Watcher.Event.KeeperState;
 import org.apache.zookeeper.ZooDefs.Ids;
+import org.apache.zookeeper.ZooKeeper;
 
 /**
  * Zookeeper base学习笔记
@@ -45,29 +47,45 @@ public class ZookeeperBase {
 		//进行阻塞
 		connectedSemaphore.await();
 		
-		System.out.println("..");
+//		System.out.println("..");
 		//创建父节点
 //		zk.create("/testRoot", "testRoot".getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
-		
-		//创建子节点
+//		System.out.println("创建父节点");
+//		//创建子节点
 //		zk.create("/testRoot/children", "children data".getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
-		
+//		System.out.println("创建子节点");
 		//获取节点洗信息
 //		byte[] data = zk.getData("/testRoot", false, null);
 //		System.out.println(new String(data));
-//		System.out.println(zk.getChildren("/testRoot", false));
+//		List<String> list = zk.getChildren("/testRoot", false);//获取节点下的所有Children
+//		for(String path:list){
+//			System.out.println(path);
+//			String realPath = "/testRoot/"+path;
+//			System.out.println("获取数据："+new String(zk.getData(realPath, false,null)));
+//		}
 		
 		//修改节点的值
 //		zk.setData("/testRoot", "modify data root".getBytes(), -1);
 //		byte[] data = zk.getData("/testRoot", false, null);
-//		System.out.println(new String(data));		
+//		System.out.println("获取修改后的数据："+new String(data));		
 		
 		//判断节点是否存在
-//		System.out.println(zk.exists("/testRoot/children", false));
+		System.out.println(zk.exists("/testRoot/children", false));
 		//删除节点
 //		zk.delete("/testRoot/children", -1);
-//		System.out.println(zk.exists("/testRoot/children", false));
 		
+		//异步删除节点方法
+//		zk.delete("/testRoot/children", -1, new AsyncCallback.VoidCallback() {
+//			
+//			@Override
+//			public void processResult(int rc, String path, Object ctx) {
+//				System.out.println(rc);
+//				System.out.println(path);
+//				System.out.println(ctx);
+//			}
+//		}, "test");
+//		System.out.println(zk.exists("/testRoot/children", false));
+//		
 		zk.close();
 		
 		
