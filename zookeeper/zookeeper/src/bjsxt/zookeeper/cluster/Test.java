@@ -14,7 +14,7 @@ public class Test {
 
 
 	/** zookeeper地址 */
-	static final String CONNECT_ADDR = "192.168.1.106:2181,192.168.1.107:2181,192.168.1.108:2181";
+	static final String CONNECT_ADDR = "192.168.18.191:2181,192.168.18.192:2181,192.168.18.193:2181";
 	/** session超时时间 */
 	static final int SESSION_OUTTIME = 2000;//ms 
 	/** 信号量，阻塞程序执行，用于等待zookeeper连接成功，发送成功信号 */

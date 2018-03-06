@@ -73,10 +73,10 @@ public class ZooKeeperWatcher implements Watcher {
 	 * @param data 数据内容
 	 * @return 
 	 */
-	public boolean createPath(String path, String data) {
+	public boolean createPath(String path, String data,boolean needWatch) {
 		try {
 			//设置监控(由于zookeeper的监控都是一次性的所以 每次必须设置监控)
-			this.zk.exists(path, true);
+			this.zk.exists(path, needWatch);
 			System.out.println(LOG_PREFIX_OF_MAIN + "节点创建成功, Path: " + 
 							   this.zk.create(	/**路径*/ 
 									   			path, 
@@ -168,7 +168,7 @@ public class ZooKeeperWatcher implements Watcher {
 	/**
 	 * 删除所有节点
 	 */
-	public void deleteAllTestPath() {
+	public void deleteAllTestPath(boolean needWatch) {
 		if(this.exists(CHILDREN_PATH, false) != null){
 			this.deleteNode(CHILDREN_PATH);
 		}
@@ -283,39 +283,42 @@ public class ZooKeeperWatcher implements Watcher {
 		Thread.sleep(1000);
 		
 		// 清理节点
-		zkWatch.deleteAllTestPath();
+//		zkWatch.deleteAllTestPath(true);
+		//---------------------- 第一步：创建父子点/p ----------------------------//
 		
-		if (zkWatch.createPath(PARENT_PATH, System.currentTimeMillis() + "")) {
+		//设置监控(由于zookeeper的监控都是一次性的所以 每次必须设置监控)
+		if (zkWatch.createPath(PARENT_PATH, System.currentTimeMillis() + "",true)) {
 			
 			Thread.sleep(1000);
 			
-			
-			// 读取数据
-			System.out.println("---------------------- read parent ----------------------------");
-			//zkWatch.readData(PARENT_PATH, true);
-			
-			// 读取子节点
-			System.out.println("---------------------- read children path ----------------------------");
-			zkWatch.getChildren(PARENT_PATH, true);
-
-			// 更新数据
-			zkWatch.writeData(PARENT_PATH, System.currentTimeMillis() + "");
-			
-			Thread.sleep(1000);
-			
-			// 创建子节点
-			zkWatch.createPath(CHILDREN_PATH, System.currentTimeMillis() + "");
-			
-			Thread.sleep(1000);
-			
-			zkWatch.writeData(CHILDREN_PATH, System.currentTimeMillis() + "");
+			//---------------------- 第二步：读取节点/p 和读取/p 节点下的子节点（getChildren）的区别 ----------------------------			
+//			// 读取数据
+//			System.out.println("---------------------- read parent ----------------------------");
+//			//zkWatch.readData(PARENT_PATH, true);//(由于zookeeper的监控都是一次性的所以 每次必须设置监控)
+			zkWatch.exists(PARENT_PATH, true);//这样同样也设置了监控
+//			// 读取子节点
+//			System.out.println("---------------------- read children path ----------------------------");
+//			zkWatch.getChildren(PARENT_PATH, true);
+//
+//			// 更新数据
+//			zkWatch.writeData(PARENT_PATH, System.currentTimeMillis() + "");
+//			
+//			Thread.sleep(1000);
+//			
+//			// 创建子节点
+//			zkWatch.createPath(CHILDREN_PATH, System.currentTimeMillis() + "");
+//			
+//			Thread.sleep(1000);
+//			
+//			zkWatch.writeData(CHILDREN_PATH, System.currentTimeMillis() + "");
 		}
 		
-		Thread.sleep(50000);
-		// 清理节点
-		zkWatch.deleteAllTestPath();
-		Thread.sleep(1000);
-		zkWatch.releaseConnection();
+//		Thread.sleep(50000);
+//		// 清理节点
+		zkWatch.deleteAllTestPath(true);//参数true代表需要加watch
+//		zkWatch.releaseConnection();
+//		Thread.sleep(1000);
+
 	}
 
 }

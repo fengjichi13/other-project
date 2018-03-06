@@ -22,7 +22,7 @@ import org.apache.zookeeper.data.Stat;
 public class ZookeeperAuth implements Watcher {
 
 	/** 连接地址 */
-	final static String CONNECT_ADDR = "192.168.80.88:2181";
+	final static String CONNECT_ADDR = "192.168.18.191:2181,192.168.18.192:2181,192.168.18.193:2181";
 	/** 测试路径 */
 	final static String PATH = "/testAuth";
 	final static String PATH_DEL = "/testAuth/delNode";

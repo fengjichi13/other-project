@@ -17,7 +17,7 @@ import org.apache.zookeeper.data.Stat;
 public class CuratorBase {
 	
 	/** zookeeper地址 */
-	static final String CONNECT_ADDR = "192.168.1.171:2181,192.168.1.172:2181,192.168.1.173:2181";
+	static final String CONNECT_ADDR = "192.168.18.191:2181,192.168.18.192:2181,192.168.18.193:2181";
 	/** session超时时间 */
 	static final int SESSION_OUTTIME = 5000;//ms 
 	
@@ -93,6 +93,6 @@ public class CuratorBase {
 		
 		
 		//cf.delete().guaranteed().deletingChildrenIfNeeded().forPath("/super");
-		
+		cf.close();
 	}
 }

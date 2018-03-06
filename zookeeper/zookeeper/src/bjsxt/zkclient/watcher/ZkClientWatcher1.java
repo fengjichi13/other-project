@@ -9,7 +9,7 @@ import org.I0Itec.zkclient.ZkConnection;
 public class ZkClientWatcher1 {
 
 	/** zookeeper地址 */
-	static final String CONNECT_ADDR = "192.168.1.171:2181,192.168.1.172:2181,192.168.1.173:2181";
+	static final String CONNECT_ADDR = "192.168.18.191:2181,192.168.18.192:2181,192.168.18.193:2181";
 	/** session超时时间 */
 	static final int SESSION_OUTTIME = 5000;//ms 
 	
@@ -27,7 +27,7 @@ public class ZkClientWatcher1 {
 		});
 		
 		Thread.sleep(3000);
-		
+		//对子节点的监听只是对新增和删除行为的监听，不包括数据的修改
 		zkc.createPersistent("/super");
 		Thread.sleep(1000);
 		
