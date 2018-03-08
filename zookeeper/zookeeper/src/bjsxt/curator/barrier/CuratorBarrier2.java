@@ -13,10 +13,12 @@ import org.apache.curator.framework.recipes.queue.DistributedQueue;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.curator.retry.RetryNTimes;
 
+
+//同时开始
 public class CuratorBarrier2 {
 
 	/** zookeeper地址 */
-	static final String CONNECT_ADDR = "192.168.1.171:2181,192.168.1.172:2181,192.168.1.173:2181";
+	static final String CONNECT_ADDR = "192.168.18.191:2181,192.168.18.192:2181,192.168.18.193:2181";
 	/** session超时时间 */
 	static final int SESSION_OUTTIME = 5000;//ms 
 	
@@ -51,7 +53,7 @@ public class CuratorBarrier2 {
 		}
 
 		Thread.sleep(5000);
-		barrier.removeBarrier();	//释放
+		barrier.removeBarrier();	//释放后，开始执行
 		
 		
 	}

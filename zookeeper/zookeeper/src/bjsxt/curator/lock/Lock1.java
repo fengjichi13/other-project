@@ -13,7 +13,7 @@ public class Lock1 {
 		try {
 			reentrantLock.lock();
 			count--;
-			//System.out.println(count);
+			System.out.println(count);
 		} finally {
 			reentrantLock.unlock();
 		}

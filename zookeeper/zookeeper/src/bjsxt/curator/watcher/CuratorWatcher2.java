@@ -22,7 +22,7 @@ import org.apache.zookeeper.data.Stat;
 public class CuratorWatcher2 {
 	
 	/** zookeeper地址 */
-	static final String CONNECT_ADDR = "192.168.1.171:2181,192.168.1.172:2181,192.168.1.173:2181";
+	static final String CONNECT_ADDR = "192.168.18.191:2181,192.168.18.192:2181,192.168.18.193:2181";
 	/** session超时时间 */
 	static final int SESSION_OUTTIME = 5000;//ms 
 	
@@ -43,8 +43,8 @@ public class CuratorWatcher2 {
 		//4 建立一个PathChildrenCache缓存,第三个参数为是否接受节点数据内容 如果为false则不接受
 		PathChildrenCache cache = new PathChildrenCache(cf, "/super", true);
 		//5 在初始化的时候就进行缓存监听
-		cache.start(StartMode.POST_INITIALIZED_EVENT);
-		cache.getListenable().addListener(new PathChildrenCacheListener() {
+		cache.start(StartMode.POST_INITIALIZED_EVENT);//POST_INITIALIZED_EVENT用于监听子节点变更
+		cache.getListenable().addListener(new PathChildrenCacheListener() {//PathChildrenCacheListener监听子节点
 			/**
 			 * <B>方法名称：</B>监听子节点变更<BR>
 			 * <B>概要说明：</B>新建、修改、删除<BR>

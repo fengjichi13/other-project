@@ -18,7 +18,7 @@ import org.apache.zookeeper.data.Stat;
 public class CuratorWatcher1 {
 	
 	/** zookeeper地址 */
-	static final String CONNECT_ADDR = "192.168.1.171:2181,192.168.1.172:2181,192.168.1.173:2181";
+	static final String CONNECT_ADDR = "192.168.18.191:2181,192.168.18.192:2181,192.168.18.193:2181";
 	/** session超时时间 */
 	static final int SESSION_OUTTIME = 5000;//ms 
 	
@@ -38,8 +38,9 @@ public class CuratorWatcher1 {
 		
 		//4 建立一个cache缓存
 		final NodeCache cache = new NodeCache(cf, "/super", false);
-		cache.start(true);
-		cache.getListenable().addListener(new NodeCacheListener() {
+		cache.start(true);//默认 buildInitial，监听当前节点变更
+		
+		cache.getListenable().addListener(new NodeCacheListener() {//NodeCacheListener监听当前节点
 			/**
 			 * <B>方法名称：</B>nodeChanged<BR>
 			 * <B>概要说明：</B>触发事件为创建节点和更新节点，在删除节点的时候并不触发此操作。<BR>

@@ -29,8 +29,8 @@ public class CuratorWatcher {
 	static final String PARENT_PATH = "/super";
 	
 	/** zookeeper服务器地址 */
-	public static final String CONNECT_ADDR = "192.168.1.171:2181,192.168.1.172:2181,192.168.1.173:2181";	/** 定义session失效时间 */
-	
+	public static final String CONNECT_ADDR = "192.168.18.191:2181,192.168.18.192:2181,192.168.18.193:2181";	
+	/** 定义session失效时间 */
 	public static final int SESSION_TIMEOUT = 30000;
 	
 	public CuratorWatcher() throws Exception{

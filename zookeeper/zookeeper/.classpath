@@ -10,6 +10,6 @@
 	<classpathentry kind="lib" path="lib/curator-framework-2.4.2.jar" sourcepath="D:/004_jar/apache-maven-3.0.4/Repository/org/apache/curator/curator-framework/2.4.2/curator-framework-2.4.2-sources.jar"/>
 	<classpathentry kind="lib" path="lib/guava-14.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/zookeeper-3.4.5.jar"/>
-	<classpathentry kind="lib" path="lib/curator-recipes-2.4.2.jar"/>
+	<classpathentry kind="lib" path="lib/curator-recipes-2.4.2.jar" sourcepath="C:/Users/Administrator/.m2/repository/org/apache/curator/curator-recipes/2.4.2/curator-recipes-2.4.2-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
